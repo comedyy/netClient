@@ -1,0 +1,59 @@
+/Library
+/Temp
+/Android
+/.vs
+/obj
+/Windows
+/*.apk
+/*.csproj
+/*.sln
+/Logs
+/playback
+.idea
+/ServerData
+/ms-client.sln.DotSettings.user
+/Doc/ExcelToCS/obj/Debug/.NETFramework,Version=v4.7.1.AssemblyAttributes.cs
+/Doc/ExcelToCS/obj/Debug/ExcelToCS.csproj.AssemblyReference.cache
+.vscode
+/Assets/AddressableAssetsData/addressables_content_state.bin.meta
+/Assets/AddressableAssetsData/addressables_content_state.bin
+/Doc/ExcelToCS/obj
+## ---------------- ##
+##   WWise stuff    ##
+## ---------------- ##
+
+# project stuff
+WWiseProject/.cache/
+WWiseProject/*.prof
+WwiseProject/*_WwiseProject.*.validationcache
+WwiseProject/*_WwiseProject.*.wsettings
+WwiseProject/**/*.akd
+
+# build stuff (unsure?)
+# Assets/Wwise/Deployment/Plugins/Windows/**/*.meta
+
+# WWise Picker (editor)
+# from https://www.audiokinetic.com/library/edge/?source=Unity&id=unity__troubleshooting.html
+# >> Do not keep AkWwiseProjectData.asset under version control! 
+# >> This is a temporary cache file for the Wwise project data, 
+# >> so as to avoid having the Wwise Picker continuously parse the Work Unit files.
+
+# notes:
+# 1) if any other files go in Assets/Wwise/Editor/ProjectData/ besides AkWwiseProjectData.asset*,
+#    then don't ignore Assets/Wwise/Editor/ProjectData.meta. If AkWwiseProjectData.asset is the only item in there,
+#    then, it's OK to ignore this file.
+# 
+# Assets/Wwise/Editor/ProjectData.meta
+
+## --------------- ##
+## End WWise Stuff ##
+## --------------- ##
+/Assets/Wwise/Editor/ProjectData
+/MemoryCaptures
+/RVO_PathFind/Windows/x64
+/RVO_PathFind/Windows/.idea
+/RVO_PathFind/Windows/.vs
+/RVO_PathFind/Windows/Debug
+/RVO_PathFind/Windows/Release
+/BuildPatchTemp
+/RVO_PathFind/Android/obj
