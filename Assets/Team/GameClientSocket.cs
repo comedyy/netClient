@@ -5,21 +5,6 @@ using LiteNetLib;
 using LiteNetLib.Utils;
 using System;
 
-
-public interface IClientGameSocket : ILifeCircle
-{
-    ConnectResult connectResult{get;}
-    int RoundTripTime{get;}
-    void SendMessage<T>( T t) where T : INetSerializable;
-    void SendMessageNotReliable<T>( T t) where T : INetSerializable;
-    void SendUnConnectedMessage<T>( T t) where T : INetSerializable;
-    Action<NetDataReader> OnReceiveMsg{get;set;}
-    Action OnConnected{get;set;}
-    Action OnDisConnected{get;set;}
-    void Connect();
-    void DisConnect();
-}
-
 public class GameClientSocket : IClientGameSocket, INetEventListener, INetLogger
 {
     private NetManager _netClient;

@@ -81,9 +81,6 @@ public partial struct RoomUser : IPartialStructDeserialize
 {
     public ClientUserJoinShowInfo _clientShowInfo;
     public string name => _clientShowInfo.name;
-    public uint HeroId => _clientShowInfo.HeroId;
-    public uint heroLevel => _clientShowInfo.heroLevel;
-    public uint heroStar => _clientShowInfo.heroStar;
 
     public void OnDeserialize()
     {
@@ -94,24 +91,15 @@ public partial struct RoomUser : IPartialStructDeserialize
 public struct ClientUserJoinShowInfo : INetSerializable
 {
     public string name;
-    public uint HeroId;
-    public uint heroLevel;
-    public uint heroStar;
 
     public void Deserialize(NetDataReader reader)
     {
         name = reader.GetString();
-        HeroId = reader.GetUInt();
-        heroLevel = reader.GetUInt();
-        heroStar = reader.GetUInt();
     }
 
     public void Serialize(NetDataWriter writer)
     {
         writer.Put(name);
-        writer.Put(HeroId);
-        writer.Put(heroLevel);
-        writer.Put(heroStar);
     }
 }
 

@@ -123,15 +123,16 @@ public class Server
                 return;
             }
 
-
-            var id = ready.id;
-            if(_playerInfos[id].readyStageValue == readyStageValue)   // 已经确认过了
+            var index = _netPeers.FindIndex(m=>m == peer);
+            if(index < 0) return;
+            
+            if(_playerInfos[index].readyStageValue == readyStageValue)   // 已经确认过了
             {
                 return;
             }
 
-            _playerInfos[id].readyStageValue = readyStageValue;
-            _playerInfos[id].readyStageTime = _roomTime;
+            _playerInfos[index].readyStageValue = readyStageValue;
+            _playerInfos[index].readyStageTime = _roomTime;
 
             UpdateReadyNextStageRoom();
             
@@ -149,14 +150,16 @@ public class Server
                 return;
             }
 
-            var id = ready.id;
-            if(_playerInfos[id].finishedStageValue == finishedStageValue)   // 已经确认过了
+            var index = _netPeers.FindIndex(m=>m == peer);
+            if(index < 0) return;
+
+            if(_playerInfos[index].finishedStageValue == finishedStageValue)   // 已经确认过了
             {
                 return;
             }
 
-            _playerInfos[id].finishedStageValue = finishedStageValue;
-            _playerInfos[id].finishStageTime = _roomTime;
+            _playerInfos[index].finishedStageValue = finishedStageValue;
+            _playerInfos[index].finishStageTime = _roomTime;
 
             UpdateFinishRoom();
             

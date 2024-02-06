@@ -266,31 +266,26 @@ public class ClientBattleRoomMgr : MonoBehaviour
         }
         else if(msgType == MsgType1.RoomStartBattle)
         {
-            // var roomStartBattle = reader.Get<RoomStartBattleMsg>();
-            // BattleStartMessage startMessage = ReadObj<BattleStartMessage>(roomStartBattle.StartMsg);
-            // if(_roomState == TeamRoomState.InBattle && _battleGUID == startMessage.guid)
-            // {
-            //     // 战斗已经开始
-            //     return;
-            // }
+            var roomStartBattle = reader.Get<RoomStartBattleMsg>();
+            BattleStartMessage startMessage = ReadObj<BattleStartMessage>(roomStartBattle.StartMsg);
+            if(_roomState == TeamRoomState.InBattle && _battleGUID == startMessage.guid)
+            {
+                // 战斗已经开始
+                return;
+            }
 
             // IsLastBattleQuitMember = false;
 
-            // startMessage.joins = new JoinMessage[roomStartBattle.joinMessages.Count];
-            // for(int i = 0; i < roomStartBattle.joinMessages.Count; i++)
-            // {
-            //     startMessage.joins[i] = ReadObj<JoinMessage>(roomStartBattle.joinMessages[i]);
-            // }
+            startMessage.joins = new JoinMessage[roomStartBattle.joinMessages.Count];
+            for(int i = 0; i < roomStartBattle.joinMessages.Count; i++)
+            {
+                startMessage.joins[i] = ReadObj<JoinMessage>(roomStartBattle.joinMessages[i]);
+            }
 
-            // var lockStepProxy = GameCore.Proxy.GetProxy<LockStepMessageProxy>();
-            // lockStepProxy.SetBattleMessage(startMessage, MessageBattleType.OnlineBattle, _socket);
-            // lockStepProxy.netReconnectBattle = roomStartBattle.isReconnect;
-            // lockStepProxy.netBattleUserId = UserId;
-            // SwitchRoomState(TeamRoomState.InBattle);
-
-            // MainNet.StartBattle(startMessage);
-            // _battleGUID = startMessage.guid;
-            // BattleCore.OnBattleEnd = OnBattleEnd;
+            SwitchRoomState(TeamRoomState.InBattle);
+            DumpBattleController.Instance.StartBattle(UserId, startMessage, _socket);
+            _battleGUID = startMessage.guid;
+            DumpBattleController.Instance.OnBattleEnd = OnBattleEnd;
         }
         else if(msgType == MsgType1.RoomSyncLoadingProcess)
         {
@@ -681,7 +676,7 @@ public class ClientBattleRoomMgr : MonoBehaviour
     {
         return new ServerSetting() // 目前设置最高10分钟
         {
-            tick = 0.05f, maxFrame = 20 * 60 * 10, syncType = ServerSyncType.SyncMsgEventFrame, masterLeaveOpt = RoomMasterLeaveOpt.RemoveRoomAndBattle, maxCount = 4, 
+            tick = 0.05f, maxFrame = 20 * 60 * 10, syncType = ServerSyncType.SyncMsgEventFrame, masterLeaveOpt = RoomMasterLeaveOpt.OnlyRemoveRoomBeforeBattle, maxCount = 4, 
             Conditions = pairs
         };
     }

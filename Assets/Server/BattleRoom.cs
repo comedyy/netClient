@@ -195,7 +195,8 @@ public class ServerBattleRoom
 
     internal bool RemovePeer(int peer, RoomOpt opt)
     {
-        if(_server != null)
+        var canLeaveInBattle = _setting.masterLeaveOpt == RoomMasterLeaveOpt.OnlyRemoveRoomBeforeBattle;
+        if(_server != null && !canLeaveInBattle)
         {
             Error(peer, RoomError.LeaveErrorInBattle);
             return false;
@@ -231,6 +232,8 @@ public class ServerBattleRoom
 
     internal void ForceClose(RoomOpt reason)
     {
+        if(_netPeers.Count == 0) return;
+
         _socket.SendMessage(AllPeers, new SyncRoomOptMsg(){ state = reason, param = _netPeers[0].id});
         _socket.SendMessage(AllPeers, new UpdateRoomMemberList());
 

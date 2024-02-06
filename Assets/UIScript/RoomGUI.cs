@@ -194,7 +194,6 @@ public class RoomGUI : MonoBehaviour
             {
                 int widthIndex = 0;
                 GUI.Label(new Rect((widthIndex++) * 100, i * 50 + 400, 100, 50), _userList[i].name);
-                GUI.Label(new Rect((widthIndex++) * 100, i * 50 + 400, 100, 50), $"{_userList[i].HeroId};{_userList[i].heroLevel};{_userList[i].heroStar}");
                 GUI.Label(new Rect((widthIndex++) * 100, i * 50 + 400, 100, 50), _userList[i].userId.ToString());
                 GUI.Label(new Rect((widthIndex++) * 100, i * 50 + 400, 100, 50), $"在线：{_userList[i].isOnLine}");
                 GUI.Label(new Rect((widthIndex++) * 100, i * 50 + 400, 100, 50), $"准备：{_userList[i].isReady}");

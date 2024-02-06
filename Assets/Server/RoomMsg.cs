@@ -17,7 +17,6 @@ public enum RoomMasterLeaveOpt
 {
     RemoveRoomAndBattle,
     OnlyRemoveRoomBeforeBattle,
-    ChangeRoomMater,
 }
 
 

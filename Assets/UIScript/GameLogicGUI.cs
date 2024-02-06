@@ -22,7 +22,15 @@ public class GameLogicGUI : MonoBehaviour
 
     private (JoinMessage, ClientUserJoinShowInfo) GetJoinMessage(int roomId)
     {
-        return (default, default);
+        var join = new JoinMessage(){
+            UserName = ClientBattleRoomMgr.Instance().UserId.ToString(), userId = (uint)ClientBattleRoomMgr.Instance().UserId
+        };
+
+        var joinInfo = new ClientUserJoinShowInfo(){
+            name = join.UserName
+        };
+
+        return (join, joinInfo);
     }
 
     private (BattleStartMessage, ClientRoomShowInfo) GetStartMessage()
